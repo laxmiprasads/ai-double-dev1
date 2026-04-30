@@ -1,0 +1,684 @@
+<!-- TOP BAR -->
+<header class="top-bar">
+  <a class="tb-brand" href="index.html">
+    <div class="tb-icon"><svg viewBox="0 0 16 16"><path d="M8 1L1 5v6l7 4 7-4V5L8 1zm0 2l5 2.9V11L8 13.9 3 11V5.9L8 3z"/></svg></div>
+    <span class="tb-name">AI Double</span>
+  </a>
+  <div class="tb-sep"></div>
+  <span class="tb-page">Business Profile</span>
+  <div class="tb-right">
+    <button class="tb-btn ghost" onclick="expandAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h10M2 9h10M4 3l-2 2 2 2M10 7l2 2-2 2"/></svg>
+      Expand All
+    </button>
+    <button class="tb-btn ghost" onclick="collapseAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h10M2 9h10"/></svg>
+      Collapse All
+    </button>
+    <button class="tb-btn primary" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 7l3.5 3.5L12 3"/></svg>
+      Save Changes
+    </button>
+    <div class="avatar">LP</div>
+  </div>
+</header>
+
+<!-- TAB BAR -->
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('profile')">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="4" r="2.5"/><path d="M1.5 12.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>
+    <span class="tab-label">Profile</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('services')">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="10" height="10" rx="2"/><path d="M5 7h4M7 5v4"/></svg>
+    <span class="tab-label">Services</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('products')">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1l5 3v6l-5 3-5-3V4z"/></svg>
+    <span class="tab-label">Products</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('scorecard')">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M7 4v3l2 1.5"/></svg>
+    <span class="tab-label">Visibility</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('intent')">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h2M5 3l-2 2 2 2M11 3l2 2-2 2M13 7h-2M7 1v12"/></svg>
+    <span class="tab-label">Intent Clusters</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab('coupons')">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="12" height="7" rx="1.5"/><path d="M4 4V3a3 3 0 016 0v1"/></svg>
+    <span class="tab-label">Coupons</span>
+  </button>
+</nav>
+
+<div class="workspace">
+
+<!-- ══════════════════ PROFILE TAB ══════════════════ -->
+<div class="tab-panel active" id="tab-profile">
+
+  <!-- Account Details -->
+  <div class="section" id="s-account">
+    <div class="sec-hdr" onclick="toggleSec('s-account')">
+      <div class="sec-icon" style="background:#dbeafe"><svg viewBox="0 0 16 16" fill="none" stroke="#2563eb" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+      <span class="sec-title">Account Details</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">First Name</label><input type="text" placeholder="Alex"></div>
+        <div class="fgrp"><label class="flabel">Last Name</label><input type="text" placeholder="Johnson"></div>
+        <div class="fgrp"><label class="flabel">Work Email</label><input type="email" value="kushiindianrestaurant1@gmail.com"></div>
+        <div class="fgrp"><label class="flabel">Password</label><input type="password" value="Users@123"></div>
+        <div class="fgrp"><label class="flabel">Phone Number</label><input type="tel" value="+1 (913) 242-7381"></div>
+        <div class="fgrp">
+          <label class="flabel">Role / Position</label>
+          <div class="sel-wrap"><select><option>Owner</option><option>Manager</option><option>Marketing Lead</option><option>Other</option></select></div>
+        </div>
+        <div class="fgrp">
+          <label class="flabel">Company Size</label>
+          <div class="sel-wrap"><select><option>25</option><option>Solo (Just me)</option><option>2–10 employees</option><option>10–50 employees</option><option>50+ employees</option></select></div>
+        </div>
+        <div class="fgrp">
+          <label class="flabel">Where is your Business Data?</label>
+          <div class="tag-select" id="ts-bizdata">
+            <span class="tchip">Google Business <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span style="font-size:.78rem;color:var(--muted);cursor:pointer" onclick="addChipPrompt('ts-bizdata')">+ Add source…</span>
+          </div>
+        </div>
+        <div class="fgrp s2"><label class="flabel">Google Business URL</label><input type="url" value="kushius.com" placeholder="https://business.google.com/..."></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Business Information -->
+  <div class="section" id="s-bizinfo">
+    <div class="sec-hdr" onclick="toggleSec('s-bizinfo')">
+      <div class="sec-icon" style="background:#d1fae5"><svg viewBox="0 0 16 16" fill="none" stroke="#059669" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 11h4M5 5h6"/></svg></div>
+      <span class="sec-title">Business Information</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Business Name <span class="req">*</span></label><input type="text" value="Kushi Indian Restaurant"></div>
+        <div class="fgrp">
+          <label class="flabel">Business Category</label>
+          <div class="sel-wrap"><select><option>Food and Restaurants</option><option>Beauty & Personal Care</option><option>Health & Wellness</option><option>Retail & Shopping</option><option>Professional Services</option></select></div>
+        </div>
+        <div class="fgrp">
+          <label class="flabel">Business Sub-Category</label>
+          <div class="sel-wrap"><select><option value="">Select sub-category…</option><option>Indian Restaurant</option><option>Catering</option><option>Food Delivery</option></select></div>
+        </div>
+        <div class="fgrp"><label class="flabel">Short Description</label><input type="text" value="A premier Indian restaurant in Overland Park offering authentic cuisine"></div>
+        <div class="fgrp">
+          <label class="flabel">Availability Hours</label>
+          <div class="tag-select" id="ts-avhours">
+            <span class="tchip">Monday <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span class="tchip">Tuesday <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span class="tchip">Wednesday <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span class="tchip">Thursday <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span class="tchip">Friday <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span class="tchip">Saturday <button class="xc" onclick="removeChip(this)">×</button></span>
+            <span class="tchip">Sunday <button class="xc" onclick="removeChip(this)">×</button></span>
+          </div>
+        </div>
+        <div class="fgrp">
+          <label class="flabel">Availability Times</label>
+          <div class="tag-select" id="ts-avtimes">
+            <span style="font-size:.78rem;color:var(--muted);cursor:pointer" onclick="addChipPrompt('ts-avtimes')">+ Add time range…</span>
+          </div>
+        </div>
+        <div class="fgrp"><label class="flabel">Website URL</label><input type="url" value="https://kushius.com/"></div>
+        <div class="fgrp"><label class="flabel">Google Business Profile Link</label><input type="text" value="Kushi Indian Restaurant GMB"></div>
+        <div class="fgrp">
+          <label class="flabel">Type of Business</label>
+          <div class="sel-wrap"><select><option>Offline</option><option>Online</option><option>Hybrid</option></select></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Links -->
+  <div class="section" id="s-social">
+    <div class="sec-hdr" onclick="toggleSec('s-social')">
+      <div class="sec-icon" style="background:#fce7f3"><svg viewBox="0 0 16 16" fill="none" stroke="#9d174d" stroke-width="1.5"><circle cx="4" cy="8" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="12" cy="12" r="2"/><path d="M6 7l4-2M6 9l4 2"/></svg></div>
+      <span class="sec-title">Social Links</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg three">
+        <div class="fgrp">
+          <label class="flabel">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook Link
+          </label>
+          <input type="url" value="https://www.facebook.com/kushiindi" placeholder="https://facebook.com/your-page">
+        </div>
+        <div class="fgrp">
+          <label class="flabel">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="url(#ig)"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram Link
+          </label>
+          <input type="url" value="https://www.instagram.com/kushi_ir" placeholder="https://instagram.com/handle">
+        </div>
+        <div class="fgrp">
+          <label class="flabel">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn Link
+          </label>
+          <input type="url" placeholder="https://linkedin.com/company/...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Business Type -->
+  <div class="section" id="s-biztype">
+    <div class="sec-hdr" onclick="toggleSec('s-biztype')">
+      <div class="sec-icon" style="background:#fef3c7"><svg viewBox="0 0 16 16" fill="none" stroke="#d97706" stroke-width="1.5"><path d="M8 1l1.8 4.8 5.2.4-4 3.4 1.3 5L8 12l-4.3 2.6 1.3-5-4-3.4 5.2-.4z"/></svg></div>
+      <span class="sec-title">Business Type</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp">
+          <label class="flabel">Business Type</label>
+          <div class="sel-wrap"><select><option>Services + Products</option><option>Services Only</option><option>Products Only</option><option>Digital / Online</option></select></div>
+        </div>
+        <div class="fgrp">
+          <label class="flabel">Primary Goal</label>
+          <div class="sel-wrap"><select><option>Get Bookings</option><option>Get Leads</option><option>Sell Products</option><option>Increase Visibility</option></select></div>
+        </div>
+        <div class="fgrp s2">
+          <div class="ai-box" style="margin-bottom:0">
+            <div class="ai-box-lbl"><svg viewBox="0 0 14 14" stroke-width="1.5"><path d="M7 1l1.5 4h4l-3.3 2.4 1.3 4L7 9l-3.5 2.4 1.3-4L1.5 5H5.5z"/></svg> AI Profiling Brief</div>
+            <textarea class="ai-box" style="background:white;border:1.5px solid rgba(37,99,235,.2);border-radius:var(--r);padding:10px 13px;min-height:90px;width:100%;font-family:var(--sans);font-size:.875rem;color:var(--ink);resize:vertical;outline:none;margin-top:6px" placeholder="e.g. High-engagement culinary business focusing on diverse regional Indian menus…">High-engagement culinary business focusing on diverse regional Indian menus (North/South). Emphasizes "freshness and hygiene" as core values. Targets both local diners and large-scale event planners through a mix of dine-in, delivery (DoorDash/UberEats), and professional catering.</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address -->
+  <div class="section" id="s-address">
+    <div class="sec-hdr" onclick="toggleSec('s-address')">
+      <div class="sec-icon" style="background:#d1fae5"><svg viewBox="0 0 16 16" fill="none" stroke="#059669" stroke-width="1.5"><path d="M8 1C5.2 1 3 3.2 3 6c0 3.7 5 9 5 9s5-5.3 5-9c0-2.8-2.2-5-5-5z"/><circle cx="8" cy="6" r="1.5"/></svg></div>
+      <span class="sec-title">Address</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp s2"><label class="flabel">Street Address</label><input type="text" value="14856 Metcalf Ave, Overland Park, KS 66223, USA"></div>
+        <div class="fgrp">
+          <label class="flabel">Radius of Service</label>
+          <input type="text" placeholder="e.g. 25 miles">
+          <a href="#" class="map-link">
+            <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1C4.2 1 2 3.2 2 6c0 3.7 5 9 5 9s5-5.3 5-9c0-2.8-2.2-5-5-5z"/></svg>
+            View Map
+          </a>
+        </div>
+        <div class="fgrp"><label class="flabel">Country</label><input type="text" value="USA"></div>
+        <div class="fgrp"><label class="flabel">State / Region</label><input type="text" value="Kansas"></div>
+        <div class="fgrp"><label class="flabel">City</label><input type="text" value="Overland Park"></div>
+        <div class="fgrp"><label class="flabel">Postcode / ZIP</label><input type="text" value="66223"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other Details -->
+  <div class="section" id="s-other-profile">
+    <div class="sec-hdr" onclick="toggleSec('s-other-profile')">
+      <div class="sec-icon" style="background:#ede9fe"><svg viewBox="0 0 16 16" fill="none" stroke="#7c3aed" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4M8 11v.5"/></svg></div>
+      <span class="sec-title">Other Details</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Website Route URL</label><input type="text" value="kushi-restaurant" placeholder="e.g. my-business"></div>
+        <div class="fgrp"><label class="flabel">Yelp Rating</label><input type="number" value="4.9" step="0.1" min="0" max="5" placeholder="0.0 – 5.0"></div>
+        <div class="fgrp s2"><label class="flabel">Reviews</label><textarea placeholder="Paste or summarise customer reviews…" style="min-height:80px"></textarea></div>
+        <div class="fgrp s2"><label class="flabel">FAQ's</label><textarea placeholder="List frequently asked questions and answers…" style="min-height:80px"></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-save" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3 3 7-6"/></svg>
+      Save Profile
+    </button>
+  </div>
+</div><!-- /profile -->
+
+
+<!-- ══════════════════ SERVICES TAB ══════════════════ -->
+<div class="tab-panel" id="tab-services">
+  <div class="action-bar">
+    <!-- <button class="act-btn solid" onclick="alert('OCR scan triggered')">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="4" height="4"/><rect x="9" y="1" width="4" height="4"/><rect x="1" y="9" width="4" height="4"/><path d="M9 9h4v4H9z" stroke-dasharray="2"/></svg>
+      Scan (OCR)
+    </button> -->
+    <button class="act-btn outline" onclick="expandAll()">Expand All</button>
+    <button class="act-btn outline" onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <!-- Services -->
+  <div class="section" id="s-services">
+    <div class="sec-hdr" onclick="toggleSec('s-services')">
+      <div class="sec-icon" style="background:#dbeafe"><svg viewBox="0 0 16 16" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M3 4h10M3 8h7M3 12h5"/></svg></div>
+      <span class="sec-title">Services</span>
+      <span class="sec-badge" id="svc-count">0 items</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="repeat-list" id="svc-list"></div>
+      <button class="add-row" onclick="addSvcRow()">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v10M2 7h10"/></svg>
+        Add Service
+      </button>
+    </div>
+  </div>
+
+  <!-- Availability Hours -->
+  <div class="section" id="s-avhours-svc">
+    <div class="sec-hdr" onclick="toggleSec('s-avhours-svc')">
+      <div class="sec-icon" style="background:#fef3c7"><svg viewBox="0 0 16 16" fill="none" stroke="#d97706" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg></div>
+      <span class="sec-title">Availability Hours</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="repeat-list" id="hrs-list"></div>
+      <button class="add-row" onclick="addHrsRow()">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v10M2 7h10"/></svg>
+        Add Hours
+      </button>
+    </div>
+  </div>
+
+  <!-- Other Details -->
+  <div class="section" id="s-other-svc">
+    <div class="sec-hdr" onclick="toggleSec('s-other-svc')">
+      <div class="sec-icon" style="background:#ede9fe"><svg viewBox="0 0 16 16" fill="none" stroke="#7c3aed" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4M8 11v.5"/></svg></div>
+      <span class="sec-title">Other Details</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp">
+          <label class="flabel">Business Name</label>
+          <div class="sel-wrap"><select><option value="">Select business…</option><option>Kushi Indian Restaurant</option></select></div>
+        </div>
+        <div class="fgrp"><label class="flabel">Business Email</label><input type="email" placeholder="contact@business.com"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-save" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3 3 7-6"/></svg>
+      Save Services
+    </button>
+  </div>
+</div><!-- /services -->
+
+
+<!-- ══════════════════ PRODUCTS TAB ══════════════════ -->
+<div class="tab-panel" id="tab-products">
+  <div class="action-bar">
+    <!-- <button class="act-btn solid" onclick="alert('OCR scan triggered')">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="4" height="4"/><rect x="9" y="1" width="4" height="4"/><rect x="1" y="9" width="4" height="4"/><path d="M9 9h4v4H9z" stroke-dasharray="2"/></svg>
+      Scan (OCR)
+    </button> -->
+    <button class="act-btn outline" onclick="expandAll()">Expand All</button>
+    <button class="act-btn outline" onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <!-- Product Details -->
+  <div class="section" id="s-product">
+    <div class="sec-hdr" onclick="toggleSec('s-product')">
+      <div class="sec-icon" style="background:#d1fae5"><svg viewBox="0 0 16 16" fill="none" stroke="#059669" stroke-width="1.5"><path d="M8 1l6 3.5v7L8 15l-6-3.5v-7z"/></svg></div>
+      <span class="sec-title">Product Details</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Product Name <span class="req">*</span></label><input type="text" placeholder="e.g. Mango Lassi Mix"></div>
+        <div class="fgrp">
+          <label class="flabel">Product Category <span class="req">*</span></label>
+          <div class="sel-wrap"><select><option value="">Select category…</option><option>Beverages</option><option>Spices & Condiments</option><option>Ready-to-Eat</option><option>Sweets & Desserts</option><option>Meal Kits</option></select></div>
+        </div>
+        <div class="fgrp"><label class="flabel">Price <span class="req">*</span></label><input type="number" placeholder="0.00" step="0.01"></div>
+        <div class="fgrp s2"><label class="flabel">AI Description</label><textarea placeholder="A compelling product description AI will use when recommending to customers…" style="min-height:100px"></textarea></div>
+        <div class="fgrp s2">
+          <label class="flabel">Product Image</label>
+          <div class="file-zone" id="drop-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <div class="file-zone-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            </div>
+            <div class="file-zone-title">Drag &amp; drop your image here</div>
+            <div class="file-zone-sub">PNG, JPG, WebP up to 10 MB</div>
+            <button class="file-zone-btn" onclick="document.getElementById('img-upload').click()">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10h10M7 2v8M4 5l3-3 3 3"/></svg>
+              Browse Files
+            </button>
+            <input type="file" id="img-upload" accept="image/*" style="display:none" onchange="handleFile(this)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other Details -->
+  <div class="section" id="s-other-prod">
+    <div class="sec-hdr" onclick="toggleSec('s-other-prod')">
+      <div class="sec-icon" style="background:#ede9fe"><svg viewBox="0 0 16 16" fill="none" stroke="#7c3aed" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4M8 11v.5"/></svg></div>
+      <span class="sec-title">Other Details</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Business Email</label><input type="email" placeholder="contact@business.com"></div>
+        <div class="fgrp">
+          <label class="flabel">Business Name</label>
+          <div class="sel-wrap"><select><option value="">Select business…</option><option>Kushi Indian Restaurant</option></select></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-save" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3 3 7-6"/></svg>
+      Submit Product
+    </button>
+  </div>
+</div><!-- /products -->
+
+
+<!-- ══════════════════ SCORECARD TAB ══════════════════ -->
+<div class="tab-panel" id="tab-scorecard">
+  <div class="action-bar">
+    <!-- <button class="act-btn solid" onclick="alert('OCR scan triggered')">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="4" height="4"/><rect x="9" y="1" width="4" height="4"/><rect x="1" y="9" width="4" height="4"/><path d="M9 9h4v4H9z" stroke-dasharray="2"/></svg>
+      Scan (OCR)
+    </button> -->
+    <button class="act-btn outline" onclick="expandAll()">Expand All</button>
+    <button class="act-btn outline" onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <div class="section" id="s-scorecard">
+    <div class="sec-hdr" onclick="toggleSec('s-scorecard')">
+      <div class="sec-icon" style="background:#dbeafe"><svg viewBox="0 0 16 16" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M2 12l3-4 3 2 3-5 3 3"/><path d="M2 14h12"/></svg></div>
+      <span class="sec-title">Business Visibility Scorecard</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Business Name</label><input type="text" placeholder="Your business name"></div>
+        <div class="fgrp"><label class="flabel">Address</label><input type="text" placeholder="Full street address"></div>
+        <div class="fgrp"><label class="flabel">Phone</label><input type="tel" placeholder="+1 (555) 000-0000"></div>
+        <div class="fgrp"><label class="flabel">Hours (Mon–Sat)</label><input type="text" placeholder="e.g. 11:00 AM – 10:00 PM"></div>
+        <div class="fgrp"><label class="flabel">Hours (Sunday)</label><input type="text" placeholder="e.g. 12:00 PM – 9:00 PM"></div>
+        <div class="fgrp"><label class="flabel">Walk-In Policy</label><input type="text" placeholder="e.g. Walk-ins welcome, reservations preferred"></div>
+        <div class="fgrp s2"><label class="flabel">Business Description</label><textarea placeholder="A concise description of your business for AI visibility…" style="min-height:80px"></textarea></div>
+        <div class="fgrp s2"><label class="flabel">Booking Link</label><input type="url" placeholder="https://yoursite.com/book"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-save" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3 3 7-6"/></svg>
+      Submit Scorecard
+    </button>
+  </div>
+</div><!-- /scorecard -->
+
+
+<!-- ══════════════════ INTENT CLUSTERS TAB ══════════════════ -->
+<div class="tab-panel" id="tab-intent">
+  <div class="action-bar">
+    <!-- <button class="act-btn solid" onclick="alert('OCR scan triggered')">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="4" height="4"/><rect x="9" y="1" width="4" height="4"/><rect x="1" y="9" width="4" height="4"/><path d="M9 9h4v4H9z" stroke-dasharray="2"/></svg>
+      Scan (OCR)
+    </button> -->
+    <button class="act-btn outline" onclick="expandAll()">Expand All</button>
+    <button class="act-btn outline" onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <div class="section" id="s-intent">
+    <div class="sec-hdr" onclick="toggleSec('s-intent')">
+      <div class="sec-icon" style="background:#fce7f3"><svg viewBox="0 0 16 16" fill="none" stroke="#9d174d" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5c0-1.1.9-2 2-2a2 2 0 010 4c-1.1 0-2 .9-2 2v.5M8 12v.5"/></svg></div>
+      <span class="sec-title">Business Intent Clusters</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Business Name</label><input type="text" placeholder="Your business name"></div>
+        <div class="fgrp">
+          <label class="flabel">Business Category</label>
+          <div class="sel-wrap"><select>
+            <option value="">Select category…</option>
+            <option>Healthcare</option>
+            <option>Beauty and Wellness</option>
+            <option>Home Services</option>
+            <option>Food and Restaurants</option>
+            <option>Retail and E-commerce</option>
+            <option>Education</option>
+            <option>Professional Services</option>
+            <option>Automotive</option>
+            <option>Hospitality and Travel</option>
+            <option>Real Estate</option>
+            <option>Digital and Online Business</option>
+            <option>Lifestyle and Personal Services</option>
+            <option>Finance and Insurance</option>
+            <option>Legal Services</option>
+            <option>IT and Software Services</option>
+            <option>Manufacturing</option>
+            <option>Construction and Infrastructure</option>
+            <option>Logistics and Transportation</option>
+            <option>Events and Entertainment</option>
+            <option>Media and Advertising</option>
+            <option>Agriculture and Farming</option>
+            <option>Wholesale and Distribution</option>
+            <option>Non-Profit and NGOs</option>
+            <option>Government and Public Services</option>
+            <option>Telecommunications</option>
+            <option>Energy and Utilities</option>
+            <option>Sports and Recreation</option>
+            <option>Fashion and Apparel</option>
+            <option>Jewelry and Accessories</option>
+            <option>Furniture and Home Decor</option>
+            <option>Pet Services</option>
+            <option>Childcare and Parenting</option>
+            <option>Security Services</option>
+            <option>Repair and Maintenance</option>
+            <option>Printing and Packaging</option>
+            <option>Import and Export</option>
+            <option>Consulting and Advisory</option>
+            <option>Training and Development</option>
+            <option>Spiritual and Religious Services</option>
+            <option>Photography and Videography</option>
+          </select></div>
+        </div>
+        <div class="fgrp s2"><label class="flabel">Primary Offering</label><textarea placeholder="Describe your primary product or service offering…" style="min-height:90px"></textarea></div>
+        <div class="fgrp s2"><label class="flabel">Key Features of Business</label><textarea placeholder="What are the key differentiating features of your business?…" style="min-height:90px"></textarea></div>
+        <div class="fgrp"><label class="flabel">Target Audience</label><input type="text" placeholder="e.g. Local families, professionals aged 25–45"></div>
+        <div class="fgrp s2"><label class="flabel">Core Problem Solved</label><textarea placeholder="What core customer problem does your business solve?…" style="min-height:80px"></textarea></div>
+        <div class="fgrp"><label class="flabel">Intent Cluster Name</label><input type="text" placeholder="e.g. Restaurant Discovery, Catering Bookings"></div>
+        <div class="fgrp"><label class="flabel">Related User Queries</label><input type="text" placeholder="e.g. best Indian restaurant near me, Indian catering"></div>
+        <div class="fgrp s2">
+          <label class="flabel">Use Cases</label>
+          <div class="rte-wrap">
+            <div class="rte-toolbar">
+              <div class="tg">
+                <select class="rte-sel"><option>Normal</option><option>Heading 1</option><option>Heading 2</option></select>
+                <select class="rte-sel" style="margin-left:4px"><option>Sans Serif</option><option>Serif</option><option>Mono</option></select>
+              </div>
+              <div class="tg">
+                <button class="rtb" onclick="fmt('bold')" title="Bold"><strong>B</strong></button>
+                <button class="rtb" onclick="fmt('italic')" title="Italic"><em>I</em></button>
+                <button class="rtb" onclick="fmt('underline')" title="Underline" style="text-decoration:underline">U</button>
+              </div>
+              <div class="tg">
+                <button class="rtb" onclick="fmt('insertUnorderedList')" title="Bullet list">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="2" cy="4" r="1" fill="currentColor"/><circle cx="2" cy="8" r="1" fill="currentColor"/><circle cx="2" cy="12" r="1" fill="currentColor"/><path d="M5 4h7M5 8h7M5 12h7"/></svg>
+                </button>
+                <button class="rtb" onclick="fmt('insertOrderedList')" title="Numbered list">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 3h2M1 3v2h2M5 4h7M5 8h7M5 12h7"/></svg>
+                </button>
+                <button class="rtb" onclick="fmt('justifyLeft')" title="Align left">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h10M2 7h7M2 10h10"/></svg>
+                </button>
+              </div>
+              <div class="tg">
+                <button class="rtb" title="Link">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8a3 3 0 004.24 0l2-2a3 3 0 00-4.24-4.24l-1 1M8 6a3 3 0 00-4.24 0l-2 2a3 3 0 004.24 4.24l1-1"/></svg>
+                </button>
+                <button class="rtb" title="Image">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2" width="12" height="10" rx="1.5"/><path d="M1 9l3-3 2 2 3-4 4 5"/></svg>
+                </button>
+                <button class="rtb" title="Code">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5L1 7l3 2M10 5l3 2-3 2"/></svg>
+                </button>
+                <button class="rtb" onclick="clearFmt()" title="Clear formatting">
+                  <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 2l10 10M8 2l-6 6 2 2 6-6zM12 8l-4 4"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="rte-area" contenteditable="true" id="rte-usecases" data-placeholder="Describe how customers use your business — scenarios, contexts, use cases…"></div>
+          </div>
+        </div>
+        <div class="fgrp"><label class="flabel">Intent Type</label><input type="text" placeholder="e.g. Transactional, Informational, Navigational"></div>
+        <div class="fdiv"></div>
+        <div class="fgrp s2"><label class="flabel">Competitors</label><textarea placeholder="List your main competitors…" style="min-height:80px"></textarea></div>
+        <div class="fgrp s2"><label class="flabel">Differentiation</label><textarea placeholder="How do you differentiate from competitors?…" style="min-height:80px"></textarea></div>
+        <div class="fgrp"><label class="flabel">Trust Signals</label><input type="text" placeholder="e.g. 4.9 stars, 500+ reviews, 15 years in business"></div>
+        <div class="fgrp"><label class="flabel">Pricing / Accessibility</label><input type="text" placeholder="e.g. Mid-range, $15–$35 per person"></div>
+        <div class="fgrp s2"><label class="flabel">Business Email</label><input type="email" placeholder="contact@business.com"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-save" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3 3 7-6"/></svg>
+      Submit Intent Cluster
+    </button>
+  </div>
+</div><!-- /intent -->
+
+
+<!-- ══════════════════ COUPONS TAB ══════════════════ -->
+<div class="tab-panel" id="tab-coupons">
+  <div class="action-bar">
+    <!-- <button class="act-btn solid" onclick="alert('OCR scan triggered')">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="1" width="4" height="4"/><rect x="9" y="1" width="4" height="4"/><rect x="1" y="9" width="4" height="4"/><path d="M9 9h4v4H9z" stroke-dasharray="2"/></svg>
+      Scan (OCR)
+    </button> -->
+    <button class="act-btn outline" onclick="expandAll()">Expand All</button>
+    <button class="act-btn outline" onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <!-- Coupon Identity -->
+  <div class="section" id="s-coupon-id">
+    <div class="sec-hdr" onclick="toggleSec('s-coupon-id')">
+      <div class="sec-icon" style="background:#fee2e2"><svg viewBox="0 0 16 16" fill="none" stroke="#dc2626" stroke-width="1.5"><rect x="1" y="5" width="14" height="7" rx="1.5"/><path d="M5 5V4a3 3 0 016 0v1"/></svg></div>
+      <span class="sec-title">Coupon Identity</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp"><label class="flabel">Coupon Name <span class="req">*</span></label><input type="text" placeholder="e.g. Summer Special 2025"></div>
+        <div class="fgrp"><label class="flabel">Coupon Code <span class="req">*</span></label><input type="text" placeholder="e.g. SUMMER20" style="font-family:var(--mono);letter-spacing:.04em"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Value Structure -->
+  <div class="section" id="s-value">
+    <div class="sec-hdr" onclick="toggleSec('s-value')">
+      <div class="sec-icon" style="background:#d1fae5"><svg viewBox="0 0 16 16" fill="none" stroke="#059669" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v6M6 7h4M6 9h4"/></svg></div>
+      <span class="sec-title">Value Structure</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp">
+          <label class="flabel">Discount Type <span class="req">*</span></label>
+          <div class="sel-wrap"><select><option value="">Select type…</option><option>Percentage (%)</option><option>Fixed Amount ($)</option><option>Free Item</option><option>Buy X Get Y</option></select></div>
+        </div>
+        <div class="fgrp"><label class="flabel">Discount Value <span class="req">*</span></label><input type="number" placeholder="e.g. 20" min="0"></div>
+        <div class="fgrp"><label class="flabel">Max Discount Cap</label><input type="number" placeholder="e.g. 50 (optional)" min="0"></div>
+        <div class="fgrp"><label class="flabel">Minimum Order Value <span class="req">*</span></label><input type="number" placeholder="e.g. 30" min="0"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Offer Mapping -->
+  <div class="section" id="s-offer">
+    <div class="sec-hdr" onclick="toggleSec('s-offer')">
+      <div class="sec-icon" style="background:#dbeafe"><svg viewBox="0 0 16 16" fill="none" stroke="#2563eb" stroke-width="1.5"><path d="M3 8h10M8 3l5 5-5 5"/></svg></div>
+      <span class="sec-title">Offer Mapping</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp">
+          <label class="flabel">Applies To</label>
+          <div class="sel-wrap"><select><option value="">Select scope…</option><option>All Products</option><option>All Services</option><option>Specific Category</option><option>Specific Items</option><option>First Order Only</option></select></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auto-Action Logic -->
+  <div class="section" id="s-autoaction">
+    <div class="sec-hdr" onclick="toggleSec('s-autoaction')">
+      <div class="sec-icon" style="background:#fef3c7"><svg viewBox="0 0 16 16" fill="none" stroke="#d97706" stroke-width="1.5"><path d="M8 1v3M8 12v3M1 8h3M12 8h3M3.5 3.5l2 2M10.5 10.5l2 2M3.5 12.5l2-2M10.5 5.5l2-2"/></svg></div>
+      <span class="sec-title">Auto-Action Logic</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp">
+          <label class="flabel">Auto Apply <span class="req">*</span></label>
+          <div class="sel-wrap"><select><option value="">Select…</option><option>Yes — apply automatically</option><option>No — customer enters code</option></select></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other Details -->
+  <div class="section" id="s-other-coupon">
+    <div class="sec-hdr" onclick="toggleSec('s-other-coupon')">
+      <div class="sec-icon" style="background:#ede9fe"><svg viewBox="0 0 16 16" fill="none" stroke="#7c3aed" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v4M8 11v.5"/></svg></div>
+      <span class="sec-title">Other Details</span>
+      <svg class="sec-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l4 4 4-4"/></svg>
+    </div>
+    <div class="sec-body">
+      <div class="fg">
+        <div class="fgrp">
+          <label class="flabel">Active <span class="req">*</span></label>
+          <div class="sel-wrap"><select><option value="">Select…</option><option>Yes — coupon is active</option><option>No — coupon is paused</option></select></div>
+        </div>
+        <div class="fgrp"><label class="flabel">Business Email</label><input type="email" placeholder="contact@business.com"></div>
+        <div class="fgrp"><label class="flabel">Business Name</label><input type="text" placeholder="Business name"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar">
+    <button class="btn-save" onclick="saveAll()">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7l3 3 7-6"/></svg>
+      Submit Coupon
+    </button>
+  </div>
+</div><!-- /coupons -->
+
+</div><!-- /workspace -->
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-ic"><svg viewBox="0 0 14 14"><path d="M2 7l3.5 3.5L12 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <span id="toast-msg">Changes saved successfully</span>
+</div>
