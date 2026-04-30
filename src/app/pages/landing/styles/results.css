@@ -1,0 +1,132 @@
+/* SECTION UTILS */
+.sw {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.sh {
+  font-family: var(--display);
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+}
+.sh em {
+  font-style: italic;
+}
+
+/* RESULTS */
+.results-sec {
+  padding: 96px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.results-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 48px;
+}
+.result-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.rb-item {
+}
+.rb-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.rb-lbl {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.rb-val {
+  font-family: var(--display);
+  font-size: 1.9rem;
+  font-style: italic;
+  color: var(--blue);
+  letter-spacing: -0.5px;
+}
+.rb-track {
+  height: 6px;
+  background: rgba(10, 10, 15, 0.06);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.rb-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--blue), #5b8bff);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rb-fill.go {
+  transform: scaleX(1);
+}
+.rb-sub {
+  font-size: 0.78rem;
+  color: var(--ink4);
+  line-height: 1.5;
+}
+.results-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rcv2 {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: start;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.rcv2:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(10, 10, 15, 0.08);
+}
+.rcv2-n {
+  font-family: var(--display);
+  font-size: 3rem;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  color: var(--ink);
+  min-width: 120px;
+}
+.rcv2-n em {
+  color: var(--blue);
+}
+.rcv2-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.rcv2-desc {
+  font-size: 0.82rem;
+  color: var(--ink3);
+  line-height: 1.62;
+}
+

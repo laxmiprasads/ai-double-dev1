@@ -1,0 +1,167 @@
+/* PRICING */
+.price-sec {
+  padding: 96px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.price-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 48px;
+  align-items: start;
+}
+.price-intro-txt {
+  font-size: 0.9rem;
+  color: var(--ink3);
+  line-height: 1.72;
+  margin-top: 16px;
+  max-width: 400px;
+}
+.pgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.pcard {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  padding: 32px 28px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.pcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(10, 10, 15, 0.1);
+}
+.pcard.feat {
+  background: var(--ink);
+  border-color: var(--ink);
+  position: relative;
+}
+.pcard.feat::before {
+  content: "MOST POPULAR";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  background: var(--blue);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 100px;
+}
+.ptier {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink4);
+  margin-bottom: 16px;
+}
+.pcard.feat .ptier {
+  color: rgba(245, 242, 236, 0.4);
+}
+.pval {
+  font-family: var(--display);
+  font-size: 3.8rem;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.pcard.feat .pval {
+  color: var(--paper);
+}
+.pval sup {
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  vertical-align: super;
+  font-style: normal;
+  font-family: var(--body);
+  font-weight: 300;
+}
+.pper {
+  font-size: 0.78rem;
+  color: var(--ink4);
+  margin-bottom: 20px;
+}
+.pcard.feat .pper {
+  color: rgba(245, 242, 236, 0.4);
+}
+.psep {
+  height: 1px;
+  background: var(--rule);
+  margin-bottom: 20px;
+}
+.pcard.feat .psep {
+  background: rgba(255, 255, 255, 0.1);
+}
+.pfeats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.pfeats li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--ink2);
+}
+.pcard.feat .pfeats li {
+  color: rgba(245, 242, 236, 0.75);
+}
+.pchk {
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.pcard.feat .pchk {
+  color: #4ade80;
+}
+.pbtn {
+  display: block;
+  text-align: center;
+  padding: 11px;
+  border-radius: var(--r);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.pcard:not(.feat) .pbtn {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid rgba(10, 10, 15, 0.15);
+}
+.pcard:not(.feat) .pbtn:hover {
+  border-color: var(--ink);
+}
+.pcard.feat .pbtn {
+  background: var(--blue);
+  color: white;
+  border: 1.5px solid var(--blue);
+}
+.pcard.feat .pbtn:hover {
+  background: var(--blue-d);
+  border-color: var(--blue-d);
+}
+.pfootnote {
+  font-size: 0.75rem;
+  color: var(--ink4);
+  margin-top: 12px;
+  text-align: center;
+  font-style: italic;
+}
+

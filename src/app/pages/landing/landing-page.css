@@ -1,0 +1,14 @@
+@import './styles/_tokens.css';
+@import './styles/nav.css';
+@import './styles/hero.css';
+@import './styles/results.css';
+@import './styles/platform.css';
+@import './styles/why.css';
+@import './styles/quadrant.css';
+@import './styles/how.css';
+@import './styles/mcp.css';
+@import './styles/pricing.css';
+@import './styles/integrations.css';
+@import './styles/cta.css';
+@import './styles/footer.css';
+@import './styles/reveal.css';

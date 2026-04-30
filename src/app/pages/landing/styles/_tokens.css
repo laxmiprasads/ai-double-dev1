@@ -1,0 +1,44 @@
+    <style>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --ink: #0a0a0f;
+  --ink2: #2a2a35;
+  --ink3: #5a5a6e;
+  --ink4: #9090a8;
+  --cream: #f5f2ec;
+  --paper: #faf9f6;
+  --white: #ffffff;
+  --rule: rgba(10, 10, 15, 0.1);
+  --rule-l: rgba(10, 10, 15, 0.055);
+  --blue: #1246ff;
+  --blue-d: #0a35d4;
+  --blue-l: rgba(18, 70, 255, 0.08);
+  --green: #0a8c5a;
+  --green-l: rgba(10, 140, 90, 0.1);
+  --amber: #c97a00;
+  --red: #c4253e;
+  --display: "DM Serif Display", Georgia, serif;
+  --mono: "DM Mono", "Courier New", monospace;
+  --body: "DM Sans", system-ui, sans-serif;
+  --r: 10px;
+  --r-lg: 16px;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+

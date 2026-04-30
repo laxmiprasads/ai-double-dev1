@@ -1,0 +1,39 @@
+/* INTEGRATIONS */
+.int-sec {
+  padding: 64px 48px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+}
+.int-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+.ipill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  padding: 10px 16px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink2);
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+  cursor: default;
+}
+.ipill:hover {
+  border-color: var(--ink3);
+  transform: translateY(-2px);
+}
+.idot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+

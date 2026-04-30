@@ -1,0 +1,62 @@
+/* FOOTER */
+footer {
+  background: var(--ink2);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.foot-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.flm {
+  width: 24px;
+  height: 24px;
+  background: rgba(245, 242, 236, 0.1);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flm svg {
+  fill: rgba(245, 242, 236, 0.6);
+  width: 13px;
+  height: 13px;
+}
+.fln {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: rgba(245, 242, 236, 0.5);
+  letter-spacing: 0.04em;
+}
+.flinks {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.flinks a {
+  font-size: 0.8rem;
+  color: rgba(245, 242, 236, 0.35);
+  text-decoration: none;
+  padding: 4px 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  transition: color 0.12s;
+}
+.flinks li:last-child a {
+  border-right: none;
+}
+.flinks a:hover {
+  color: rgba(245, 242, 236, 0.7);
+}
+.fcopy {
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  color: rgba(245, 242, 236, 0.25);
+}
+

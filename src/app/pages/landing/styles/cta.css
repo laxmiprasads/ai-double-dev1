@@ -1,0 +1,49 @@
+/* CTA */
+.cta-sec {
+  padding: 96px 48px;
+  text-align: center;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.cta-sec::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(18, 70, 255, 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.cta-sec .eyebrow {
+  color: rgba(245, 242, 236, 0.35);
+  display: flex;
+  justify-content: center;
+}
+.cta-sec .sh {
+  color: var(--paper);
+  max-width: 540px;
+  margin: 16px auto;
+}
+.cta-sub {
+  font-size: 0.95rem;
+  color: rgba(245, 242, 236, 0.55);
+  max-width: 440px;
+  margin: 0 auto 40px;
+  line-height: 1.72;
+}
+.cta-note {
+  font-size: 0.78rem;
+  color: rgba(245, 242, 236, 0.3);
+  margin-top: 16px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+

@@ -1,0 +1,80 @@
+/* HOW */
+.how-sec {
+  padding: 96px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 48px;
+}
+.hc {
+  padding: 32px 24px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.hc:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(10, 10, 15, 0.09);
+}
+.hc + .hc {
+  margin-left: -1px;
+}
+.hstep {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink4);
+  margin-bottom: 16px;
+}
+.hico {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--blue-l);
+  border: 1px solid rgba(18, 70, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.hico svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--blue);
+  fill: none;
+  stroke-width: 1.5;
+}
+.ht {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.hd {
+  font-size: 0.8rem;
+  color: var(--ink3);
+  line-height: 1.65;
+}
+.htime {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-l);
+  padding: 3px 9px;
+  border-radius: 100px;
+  border: 1px solid rgba(10, 140, 90, 0.15);
+}
+
