@@ -18,4 +18,9 @@ export const routes: Routes = [
         (m) => m.GetStartedPage,
       ),
   },
+  {
+    path: ':slug',
+    loadComponent: () =>
+      import('./pages/user-home/user-home-page').then((m) => m.UserHomePage),
+  },
 ];

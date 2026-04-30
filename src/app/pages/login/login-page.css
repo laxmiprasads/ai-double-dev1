@@ -25,6 +25,10 @@ app-login-page{min-height:100vh;display:flex;align-items:stretch;background:var(
 .login-head em{font-style:italic;color:var(--blue-l)}
 .login-sub{font-size:.9rem;color:rgba(245,243,239,.5);margin-bottom:36px;line-height:1.6}
 
+/* Google button wrap */
+.google-btn-wrap{display:flex;justify-content:flex-start;margin-top:8px;margin-bottom:18px;min-height:44px}
+.google-btn-wrap > div{color-scheme:light}
+
 /* Social buttons */
 .social-row{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
 .btn-social{

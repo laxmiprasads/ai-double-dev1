@@ -1,0 +1,37 @@
+<div class="wrap">
+  <header class="bar">
+    <a routerLink="/" class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 16 16"><path d="M8 1L1 5v6l7 4 7-4V5L8 1zm0 2l5 2.9V11L8 13.9 3 11V5.9L8 3z"/></svg>
+      </div>
+      <span class="brand-name">AI Double</span>
+    </a>
+    @if (user()) {
+      <div class="who">
+        @if (user()!.picture) {
+          <img [src]="user()!.picture" alt="" class="avatar">
+        }
+        <span class="who-email">{{ user()!.email }}</span>
+        <button class="signout" (click)="signOut()">Sign out</button>
+      </div>
+    } @else {
+      <a routerLink="/login" class="signout">Sign in</a>
+    }
+  </header>
+
+  <main class="card">
+    <h1>Hi <em>{{ displayName() }}</em>.</h1>
+    @if (user()) {
+      <p class="lede">You're signed in as <strong>{{ user()!.email }}</strong>.</p>
+      <p class="lede">This is your personal workspace at <code>/{{ slug }}</code>. Onboarding flow coming next — head to the admin console to start configuring your business.</p>
+      <div class="cta-row">
+        <a routerLink="/get-started" class="primary">Open Admin Console →</a>
+      </div>
+    } @else {
+      <p class="lede">No active session for <code>/{{ slug }}</code>. Sign in to continue.</p>
+      <div class="cta-row">
+        <a routerLink="/login" class="primary">Sign in with Google →</a>
+      </div>
+    }
+  </main>
+</div>
