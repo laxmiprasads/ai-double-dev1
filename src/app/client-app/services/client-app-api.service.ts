@@ -5,8 +5,8 @@
 import { Injectable } from '@angular/core';
 import { ClientOrderDraft } from '../models/client-app.models';
 
-const GOSURE_BASE = 'https://demo.gosure.ai/accessible/api/v1/job-type/name';
-const GOSURE_CREATE_INSTANCE_URL = 'https://demo.gosure.ai/api/v1/public/create-instance';
+const GOSURE_BASE = 'https://dev.gosure.ai/accessible/api/v1/job-type/name';
+const GOSURE_CREATE_INSTANCE_URL = 'https://dev.gosure.ai/api/v1/public/create-instance';
 const GOSURE_HEADERS: HeadersInit = {
   Accept: 'application/json',
   'X-Tenant': 'aidouble',
