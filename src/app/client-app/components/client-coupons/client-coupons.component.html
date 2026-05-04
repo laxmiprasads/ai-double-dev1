@@ -1,0 +1,81 @@
+<section class="k-coupons">
+  <div class="k-section-head">
+    <div class="k-section-head__eyebrow">03 / Offers</div>
+    <h2 class="k-section-head__title">Coupons &amp; <em>Deals</em></h2>
+    <p class="k-section-head__sub">{{ coupons.length }} active offers · Valid in-store and via AI booking · Click any code to copy</p>
+  </div>
+
+  <div *ngIf="couponState === 'loading'" class="k-coupon-status k-coupon-status--info">
+    <h4>Loading coupons...</h4>
+    <p>{{ statusMessage || 'Fetching coupons from API...' }}</p>
+  </div>
+
+  <div *ngIf="couponState === 'error'" class="k-coupon-status k-coupon-status--error">
+    <h4>Could not load coupons</h4>
+    <p>{{ statusMessage || 'The coupon API returned an error.' }}</p>
+    <button type="button" class="k-btn k-btn--spice k-btn--small" (click)="retry.emit()">Retry</button>
+  </div>
+
+  <div *ngIf="couponState !== 'loading' && couponState !== 'error' && !coupons.length" class="k-coupon-status k-coupon-status--info">
+    <h4>No active coupons right now</h4>
+    <p>Check back later for new offers.</p>
+  </div>
+
+  <div *ngIf="copyMessage" class="k-copy-toast" [class.is-error]="isCopyError" aria-live="polite">
+    {{ copyMessage }}
+  </div>
+
+  <div *ngIf="couponState !== 'loading' && couponState !== 'error' && coupons.length" class="k-coupon-grid">
+    <article
+      class="k-coupon-card"
+      *ngFor="let coupon of coupons; let i = index"
+      [class.is-copied]="copiedId === getCouponId(coupon)"
+      [attr.data-tone]="i % 3">
+      <div class="k-coupon-card__emoji">{{ i % 3 === 0 ? '🎉' : (i % 3 === 1 ? '✂️' : '🤖') }}</div>
+
+      <div class="k-coupon-card__body">
+        <h3>{{ coupon.data['Coupon Name'] }}</h3>
+        <p>{{ coupon.description }}</p>
+      </div>
+
+      <div class="k-coupon-card__divider"></div>
+
+      <div class="k-coupon-card__foot">
+        <button
+          type="button"
+          class="k-coupon-card__code"
+          [class.is-copied]="copiedId === getCouponId(coupon)"
+          (click)="copyCode(coupon)">
+          {{ coupon.data['Coupon Code'] }}
+        </button>
+        <div class="k-coupon-card__right">
+          <span class="k-coupon-card__tagline">{{ coupon.tagline || coupon.validity }}</span>
+          <button
+            type="button"
+            class="k-coupon-card__copy-btn"
+            [class.is-copied]="copiedId === getCouponId(coupon)"
+            (click)="copyCode(coupon)">
+            {{ copiedId === getCouponId(coupon) ? 'Copied' : 'Copy' }}
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div *ngIf="couponState !== 'error' && totalRecords > 0" class="k-pagination">
+    <div class="k-pagination__summary">
+      Showing {{ firstRecord }}-{{ lastRecord }} of {{ totalRecords }}
+    </div>
+    <div class="k-pagination__controls">
+      <label>
+        Page size
+        <select [value]="pageSize" [disabled]="couponState === 'loading'" (change)="updatePageSize($event)">
+          <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+        </select>
+      </label>
+      <button type="button" class="k-page-btn" [disabled]="couponState === 'loading' || pageNumber <= 1" (click)="goToPage(pageNumber - 1)">Previous</button>
+      <span>Page {{ pageNumber }} of {{ totalPages }}</span>
+      <button type="button" class="k-page-btn" [disabled]="couponState === 'loading' || pageNumber >= totalPages" (click)="goToPage(pageNumber + 1)">Next</button>
+    </div>
+  </div>
+</section>

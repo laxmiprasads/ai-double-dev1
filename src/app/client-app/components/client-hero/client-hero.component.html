@@ -1,0 +1,75 @@
+<section class="k-hero">
+  <div class="k-hero__left">
+    <div class="k-tag-row">
+      <span class="k-tag k-tag--open">{{ currentBusiness?.data?.['Status'] }}</span>
+      <span class="k-tag">{{ formattedCategory }}</span>
+      <span class="k-tag k-tag--accent">AI Double MCP</span>
+      <span class="k-tag k-tag--warn">GEO Score: {{ business.geoScore }} / 100</span>
+    </div>
+
+    <h1 class="k-hero__title">
+      <span>{{ titleTop }}</span>
+      <strong>{{ titleBottom }}</strong>
+      <em>{{ formattedLocation }}</em>
+    </h1>
+
+    <p class="k-hero__copy">{{ currentBusiness.data['Short Description'] }}</p>
+
+    <div class="k-hero__stats">
+      <div class="k-mini-stat">
+        <strong>{{ currentBusiness.data['Yelp Rating'] | number : '1.1-1' }}*</strong>
+        <span>Yelp Rating</span>
+      </div>
+      <div class="k-mini-stat">
+        <strong>{{ roundedTotalProducts }}{{ showsRoundedTotalProducts ? ' +' : '' }}</strong>
+        <span>Products</span>
+      </div>
+      <div class="k-mini-stat">
+        <strong>{{ currentBusiness.data['Close'] }}</strong>
+        <span>Available till</span>
+      </div>
+    </div>
+
+    <div class="k-hero__actions">
+      <button type="button" class="k-btn k-btn--gold" (click)="order.emit()">Order Now</button>
+      <button type="button" class="k-btn k-btn--spice" (click)="navigate.emit('products')">All Products</button>
+      <button type="button" class="k-btn k-btn--glass" (click)="navigate.emit('about')">Location</button>
+    </div>
+  </div>
+
+  <div class="k-hero__right">
+    <div class="k-geo-card">
+      <div
+        *ngFor="let orbit of orbitConfigs"
+        class="k-geo-orbit"
+        [class.is-reverse]="orbit.reverse"
+        [style.width]="orbit.size"
+        [style.height]="orbit.size"
+        [style.--orbit-angle]="orbit.angle"
+        [style.animation-duration]="orbit.duration"
+        [attr.aria-label]="orbit.platform + ' orbit'">
+        <span class="k-geo-orbit__dot" [style.background]="orbit.color"></span>
+      </div>
+
+      <div class="k-geo-card__score">{{ business.geoScore }}</div>
+      <div class="k-geo-card__label">GEO Score</div>
+      <div class="k-geo-card__crit">Critical visibility gap</div>
+
+      <div class="k-geo-list">
+        <div class="k-geo-row" *ngFor="let score of business.platformScores">
+          <span>{{ score.platform }}</span>
+          <div class="k-geo-row__bar">
+            <div class="k-geo-row__fill" [style.width.%]="score.value" [style.background]="score.color"></div>
+          </div>
+          <strong>{{ score.value }}</strong>
+        </div>
+      </div>
+
+      <div class="k-geo-potential">
+        <span>AI Double Potential</span>
+        <strong>{{ business.geoPotential }}+</strong>
+        <small>post integration</small>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<nav class="k-nav">
+  <button type="button" class="k-nav__brand" (click)="reloadApp()">
+    <div class="k-nav__mark">{{ currentBusiness?.data?.['Business Name'] | slice:0:1 }}</div>
+    <div class="k-nav__text">
+      <div class="k-nav__name">{{ currentBusiness?.data?.['Business Name'] }}</div>
+      <div class="k-nav__loc">{{ formattedLocation }}</div>
+    </div>
+    <span class="k-nav__badge">&#x26A1; AI DOUBLE</span>
+  </button>
+
+  <div class="k-nav__links">
+    <button
+      *ngFor="let item of items"
+      type="button"
+      class="k-nav__link"
+      [class.is-active]="item.id === activeSection"
+      (click)="sectionChange.emit(item.id)">
+      {{ item.label }}
+    </button>
+  </div>
+
+  <button type="button" class="k-btn k-btn--spice" (click)="order.emit()">Order Now</button>
+</nav>

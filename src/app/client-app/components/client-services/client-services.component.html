@@ -1,0 +1,51 @@
+<section class="k-services">
+  <div class="k-section-head">
+    <div class="k-section-head__eyebrow">01 / Services</div>
+    <h2 class="k-section-head__title">Available <em>Services</em></h2>
+    <p class="k-section-head__sub">{{ services.length }} active services | Powered by live API data</p>
+  </div>
+
+  <div *ngIf="serviceState === 'loading'" class="k-service-status k-service-status--info">
+    <h4>Loading services...</h4>
+    <p>{{ statusMessage || 'Fetching services from API...' }}</p>
+  </div>
+
+  <div *ngIf="serviceState === 'error'" class="k-service-status k-service-status--error">
+    <h4>Could not load services</h4>
+    <p>{{ statusMessage || 'The services API returned an error.' }}</p>
+    <button type="button" class="k-btn k-btn--spice k-btn--small" (click)="retry.emit()">Retry</button>
+  </div>
+
+  <div *ngIf="serviceState !== 'loading' && serviceState !== 'error' && !services.length"
+    class="k-service-status k-service-status--info">
+    <h4>No services right now</h4>
+    <p>Check back shortly for updated offerings.</p>
+  </div>
+
+  <div *ngIf="serviceState !== 'loading' && serviceState !== 'error' && services.length" class="k-service-grid">
+    <article class="k-service-card" *ngFor="let service of services; let i = index" [attr.data-tone]="i % 3">
+      <div class="k-service-card__head">
+        <h3>{{ service.data['Service Name'] }}</h3>
+      </div>
+      <p>{{ service.data['AI Description'] }}</p>
+      <div class="k-service-card__meta">{{ service.data['Status'] }}</div>
+    </article>
+  </div>
+
+  <div *ngIf="serviceState !== 'error' && totalRecords > 0" class="k-pagination">
+    <div class="k-pagination__summary">
+      Showing {{ firstRecord }}-{{ lastRecord }} of {{ totalRecords }}
+    </div>
+    <div class="k-pagination__controls">
+      <label>
+        Page size
+        <select [value]="pageSize" [disabled]="serviceState === 'loading'" (change)="updatePageSize($event)">
+          <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+        </select>
+      </label>
+      <button type="button" class="k-page-btn" [disabled]="serviceState === 'loading' || pageNumber <= 1" (click)="goToPage(pageNumber - 1)">Previous</button>
+      <span>Page {{ pageNumber }} of {{ totalPages }}</span>
+      <button type="button" class="k-page-btn" [disabled]="serviceState === 'loading' || pageNumber >= totalPages" (click)="goToPage(pageNumber + 1)">Next</button>
+    </div>
+  </div>
+</section>

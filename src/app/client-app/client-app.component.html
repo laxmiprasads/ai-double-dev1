@@ -1,0 +1,151 @@
+<div *ngIf="isCheckingBusiness" class="full-page k-center-content">
+  <div class="k-status-card">
+    <div class="k-spinner"></div>
+    <h2>Loading...</h2>
+    <p>Checking business details, please wait.</p>
+  </div>
+</div>
+
+<div *ngIf="!isCheckingBusiness && !businessExists" class="full-page k-center-content">
+  <div class="k-status-card k-status-card--error">
+    <div class="k-status-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" fill="currentColor">
+        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11.9997 10.5865L14.4747 8.11145L15.8889 9.52566L13.4139 12.0007L15.8889 14.4757L14.4747 15.8899L11.9997 13.4149L9.52475 15.8899L8.11053 14.4757L10.5855 12.0007L8.11053 9.52566L9.52475 8.11145L11.9997 10.5865Z"></path>
+      </svg>
+    </div>
+    <h2>Business Not Found</h2>
+    <p>{{ businessStatusMessage || 'We could not find the business you are looking for.' }}</p>
+  </div>
+</div>
+
+<div *ngIf="!isCheckingBusiness && businessExists" class="full-page">
+  <app-client-nav
+    [currentBusiness]="matchedInstance"
+    [activeSection]="activeSection"
+    (sectionChange)="setActiveSection($event)"
+    (order)="openOrder()">
+  </app-client-nav>
+
+  <app-client-hero
+    [currentBusiness]="matchedInstance"
+    [business]="business"
+    [totalProducts]="menuTotalRecords"
+    [openStatus]="openStatus"
+    (navigate)="setActiveSection($event)"
+    (order)="openOrder()">
+  </app-client-hero>
+
+  <app-client-stats-ribbon [currentBusiness]="matchedInstance" [totalProducts]="menuTotalRecords"></app-client-stats-ribbon>
+
+  <main #contentTop class="k-main">
+    <div class="k-tabbar">
+      <button
+        *ngFor="let tab of tabOrder"
+        type="button"
+        class="k-tabbar__btn"
+        [class.is-active]="tab === activeSection"
+        (click)="setActiveSection(tab)">
+        {{ tab === 'mcp' ? 'MCP API' : (tab | titlecase) }}
+      </button>
+    </div>
+
+    <section [class.k-panel--active]="activeSection === 'services'" class="k-panel">
+      <app-client-services
+        [services]="services"
+        [serviceState]="serviceState"
+        [statusMessage]="serviceStatusMessage"
+        [pageNumber]="servicePageNumber"
+        [pageSize]="servicePageSize"
+        [totalRecords]="serviceTotalRecords"
+        (retry)="loadServices()"
+        (pageChange)="onServicePageChange($event)"
+        (pageSizeChange)="onServicePageSizeChange($event)">
+      </app-client-services>
+    </section>
+
+    <section [class.k-panel--active]="activeSection === 'products'" class="k-panel">
+      <app-client-menu
+        [items]="filteredMenuItems"
+        [categories]="menuCategories"
+        [activeCategory]="activeCategory"
+        [geoScore]="business.geoScore"
+        [menuState]="menuState"
+        [statusMessage]="menuStatusMessage"
+        [pageNumber]="menuPageNumber"
+        [pageSize]="menuPageSize"
+        [totalRecords]="menuTotalRecords"
+        (categoryChange)="setActiveCategory($event)"
+        (orderItem)="openOrder($event)"
+        (orderGeneral)="openOrder()"
+        (retryMenu)="loadMenu()"
+        (pageChange)="onMenuPageChange($event)"
+        (pageSizeChange)="onMenuPageSizeChange($event)"
+        (jumpToMcp)="setActiveSection('mcp')">
+      </app-client-menu>
+    </section>
+
+    <section [class.k-panel--active]="activeSection === 'coupons'" class="k-panel">
+      <app-client-coupons
+        [coupons]="coupons"
+        [couponState]="couponState"
+        [statusMessage]="couponStatusMessage"
+        [pageNumber]="couponPageNumber"
+        [pageSize]="couponPageSize"
+        [totalRecords]="couponTotalRecords"
+        (retry)="loadCoupons()"
+        (pageChange)="onCouponPageChange($event)"
+        (pageSizeChange)="onCouponPageSizeChange($event)">
+      </app-client-coupons>
+    </section>
+
+    <section [class.k-panel--active]="activeSection === 'about'" class="k-panel">
+      <app-client-about [business]="business"></app-client-about>
+    </section>
+
+    <section [class.k-panel--active]="activeSection === 'reviews'" class="k-panel">
+      <app-client-reviews [reviews]="reviews"></app-client-reviews>
+    </section>
+
+    <section [class.k-panel--active]="activeSection === 'faq'" class="k-panel">
+      <app-client-faq [faqs]="faqs"></app-client-faq>
+    </section>
+
+    <section [class.k-panel--active]="activeSection === 'mcp'" class="k-panel">
+      <app-client-mcp [endpoints]="endpoints" [baseUrl]="baseUrl"></app-client-mcp>
+    </section>
+  </main>
+
+  <section class="k-dark-strip">
+    <div class="k-dark-strip__inner">
+      <div class="k-dark-strip__eyebrow">Model Context Protocol &middot; AI Double</div>
+      <h2>Kushi's AI-Actionable Endpoints</h2>
+      <p>Proposed MCP endpoints that make the restaurant discoverable, recommendable, and orderable via major AI assistants.</p>
+      <app-client-mcp [endpoints]="endpoints" [baseUrl]="baseUrl"></app-client-mcp>
+    </div>
+  </section>
+
+  <footer class="k-footer">
+    <div>
+      <strong>{{ business.name }} &middot; Overland Park, KS</strong>
+      <span>AI Double MCP concept &middot; GEO Score {{ business.geoScore }} -> {{ business.geoPotential }}+</span>
+    </div>
+    <nav>
+      <a [href]="business.website" target="_blank" rel="noopener">Website</a>
+      <a href="https://food.orders.co/b9uydd6q" target="_blank" rel="noopener">Order Direct</a>
+      <a href="https://www.doordash.com/en/store/kushi-indian-restaurant-overland-park-27957715/" target="_blank" rel="noopener">DoorDash</a>
+      <a href="https://ai.double.ai" target="_blank" rel="noopener">AI Double</a>
+    </nav>
+  </footer>
+
+  <app-client-order-modal
+    [open]="modalOpen"
+    [selectedItem]="selectedItem"
+    [draft]="draft"
+    [submitted]="orderSubmitted"
+    [submitting]="orderSubmitting"
+    [confirmationCode]="confirmationCode"
+    [errorMessage]="orderErrorMessage"
+    (close)="closeOrder()"
+    (submit)="submitOrder()">
+  </app-client-order-modal>
+</div>

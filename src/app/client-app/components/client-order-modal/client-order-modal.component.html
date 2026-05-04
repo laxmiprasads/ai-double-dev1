@@ -1,0 +1,99 @@
+<div class="k-modal-backdrop" *ngIf="open" (click)="close.emit()">
+  <div class="k-modal" (click)="$event.stopPropagation()">
+    <div class="k-modal__head">
+      <h3>{{ selectedItem ? 'Order: ' + selectedItem.data['Product Name'] : 'Place Order' }}</h3>
+      <button type="button" class="k-modal__close-btn" (click)="close.emit()">×</button>
+    </div>
+
+    <div class="k-modal__body">
+      <div *ngIf="selectedItem" class="k-order-preview">
+        <div class="k-order-preview__icon">🍽️</div>
+        <div class="k-order-preview__meta">
+          <strong>{{ selectedItem.data['Product Name'] }}</strong>
+          <span>${{ selectedItem.data['Price'] | number : '1.2-2' }}</span>
+        </div>
+      </div>
+
+      <div class="k-field" *ngIf="selectedItem">
+        <label>Spice Level</label>
+        <div class="k-pill-row">
+          <button
+            *ngFor="let spice of spiceLevels"
+            type="button"
+            class="k-pill k-pill--spice"
+            [class.is-active]="draft.spiceLevel === spice.value"
+            (click)="draft.spiceLevel = spice.value">
+            <span>{{ spice.icon }}</span>
+            {{ spice.label }}
+          </button>
+        </div>
+      </div>
+
+      <div class="k-field" *ngIf="selectedItem">
+        <label>Quantity</label>
+        <div class="k-qty">
+          <button type="button" (click)="changeQty(-1)">−</button>
+          <strong>{{ draft.quantity }}</strong>
+          <button type="button" (click)="changeQty(1)">+</button>
+          <span>${{ total | number : '1.2-2' }}</span>
+        </div>
+      </div>
+
+      <div class="k-field">
+        <label>Fulfilment</label>
+        <div class="k-pill-row">
+          <button
+            *ngFor="let option of fulfilmentOptions"
+            type="button"
+            class="k-pill k-pill--fulfilment"
+            [class.is-active]="draft.fulfilment === option.value"
+            (click)="draft.fulfilment = option.value">
+            <span>{{ option.icon }}</span>
+            {{ option.label }}
+          </button>
+        </div>
+      </div>
+
+      <div class="k-form-grid">
+        <div class="k-field">
+          <label>Your Name</label>
+          <input [(ngModel)]="draft.customerName" placeholder="Full name" />
+        </div>
+        <div class="k-field">
+          <label>Email</label>
+          <input [(ngModel)]="draft.customerEmail" placeholder="you@example.com" type="email" />
+        </div>
+      </div>
+
+      <div class="k-form-grid">
+        <div class="k-field">
+          <label>Phone</label>
+          <input [(ngModel)]="draft.customerPhone" placeholder="+19135550000" />
+        </div>
+      </div>
+
+      <div class="k-field" *ngIf="draft.fulfilment !== 'pickup'">
+        <label>Delivery Address</label>
+        <textarea [(ngModel)]="draft.deliveryAddress" rows="3" placeholder="Enter delivery address"></textarea>
+      </div>
+
+      <div *ngIf="submitted" class="k-order-success">
+        <strong>Order Placed</strong>
+        <p>Ref: #{{ confirmationCode }}</p>
+        <p>{{ etaText }}</p>
+      </div>
+
+      <div *ngIf="errorMessage" class="k-order-error">
+        <strong>Order failed</strong>
+        <p>{{ errorMessage }}</p>
+      </div>
+    </div>
+
+    <div class="k-modal__foot">
+      <button type="button" class="k-btn k-btn--ghost" (click)="close.emit()" [disabled]="submitting">Cancel</button>
+      <button type="button" class="k-btn k-btn--spice" (click)="submitOrder()" [disabled]="submitted || submitting">
+        Place Order →
+      </button>
+    </div>
+  </div>
+</div>

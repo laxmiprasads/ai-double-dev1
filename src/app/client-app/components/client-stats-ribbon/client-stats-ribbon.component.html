@@ -1,0 +1,16 @@
+<section class="k-stats">
+  <div class="k-stats__grid">
+    <div class="k-stats__item">
+      <strong>{{ currentBusiness.data['Yelp Rating'] | number : '1.1-1' }}<em>*</em></strong>
+      <span>Yelp Rating</span>
+    </div>
+    <div class="k-stats__item">
+      <strong>{{ roundedTotalProducts }}{{ showsRoundedTotalProducts ? ' +' : '' }}</strong>
+      <span>Products</span>
+    </div>
+    <div class="k-stats__item">
+      <strong>{{currentBusiness.data['Close']}}</strong>
+      <span>Open Till</span>
+    </div>
+  </div>
+</section>

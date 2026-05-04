@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"D:\\\\Gosure2\\\\cokube-angular\\\\src\\\\app\\\\client-app\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Get-ChildItem *)",
+      "Bash(npx ng *)"
+    ]
+  }
+}

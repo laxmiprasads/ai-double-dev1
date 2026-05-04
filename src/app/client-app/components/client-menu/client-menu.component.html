@@ -1,0 +1,98 @@
+<section>
+  <div class="k-section-head">
+    <div class="k-section-head__eyebrow">02 / Products</div>
+    <h2 class="k-section-head__title">All <em>Products</em></h2>
+    <p class="k-section-head__sub">{{ items.length }} dishes &middot; Pickup and delivery available</p>
+  </div>
+
+  <div class="k-banner">
+    <div>
+      <h3>GEO Score {{ geoScore }}/100 - Kushi is nearly invisible to AI assistants</h3>
+      <p>AI Double can make the restaurant discoverable, recommendable, and orderable in a structured format.</p>
+    </div>
+    <button type="button" class="k-btn k-btn--gold k-btn--small" (click)="jumpToMcp.emit()">Fix with AI Double</button>
+  </div>
+
+  <div class="k-banner k-banner--spice">
+    <div>
+      <h3>Order via DoorDash, Uber Eats, and orders.co</h3>
+      <p>Direct AI ordering is positioned here as the next step once the MCP layer goes live.</p>
+    </div>
+    <button type="button" class="k-btn k-btn--light k-btn--small" (click)="orderGeneral.emit()">Order Now</button>
+  </div>
+
+  <div class="k-chip-row">
+    <button
+      type="button"
+      class="k-chip"
+      [class.is-active]="'all' === activeCategory"
+      (click)="categoryChange.emit('all')">
+      <span>{{ 'All' }}</span>
+    </button>
+    <ng-container *ngFor="let category of categories">
+      <button *ngIf="category" type="button" class="k-chip"
+        [class.is-active]="category === activeCategory"
+        (click)="categoryChange.emit(category)">
+        {{ category }}
+      </button>
+    </ng-container>
+  </div>
+
+  <div *ngIf="menuState === 'loading'" class="k-menu-status k-info-card">
+    <h4>Loading live products</h4>
+    <p>{{ statusMessage || 'Fetching products from API...' }}</p>
+  </div>
+
+  <div *ngIf="menuState === 'error'" class="k-menu-status k-info-card">
+    <h4>Could not load products</h4>
+    <p>{{ statusMessage || 'The products API returned an error.' }}</p>
+  </div>
+
+  <div *ngIf="menuState !== 'loading' && menuState !== 'error' && !items.length" class="k-menu-status k-info-card">
+    <h4>No products found</h4>
+    <p>The API returned successfully, but there were no products to display.</p>
+  </div>
+
+  <div *ngIf="menuState !== 'loading' && menuState !== 'error' && items.length" class="k-menu-grid">
+    <article class="k-menu-card" *ngFor="let item of items">
+      <div class="k-menu-card__head">
+        <div class="k-menu-card__icon" [attr.aria-label]="item.data['Product Name'] + ' icon'">{{ foodIconFor(item) }}</div>
+        <div class="k-menu-card__price">${{ item.data['Price']}}</div>
+      </div>
+      <div class="k-menu-card__body">
+        <div class="k-menu-card__meta">{{ item.data['Product SubCategory']}}</div>
+        <h3>{{ item.data['Product Name'] }}</h3>
+        <div class="k-badge-row">
+          <span *ngIf="item.popular" class="k-badge k-badge--gold">Popular</span>
+          <span *ngIf="item.vegetarian" class="k-badge k-badge--green">Veg</span>
+          <span *ngIf="item.spiceLevel >= 4" class="k-badge k-badge--red">Very Hot</span>
+        </div>
+        <p>{{ item.data['Product Description'] }}</p>
+        <div *ngIf="item.spiceLevel > 0" class="k-spice-row">
+          <span class="k-spice-dot" *ngFor="let level of spiceDots" [class.is-on]="level <= item.spiceLevel"></span>
+        </div>
+      </div>
+      <div class="k-menu-card__foot">
+        <span>{{ item.fulfilmentNote || 'Available for order' }}</span>
+        <button type="button" class="k-btn k-btn--spice k-btn--small" (click)="orderItem.emit(item)">Add to Order</button>
+      </div>
+    </article>
+  </div>
+
+  <div *ngIf="menuState !== 'error' && totalRecords > 0" class="k-pagination">
+    <div class="k-pagination__summary">
+      Showing {{ firstRecord }}-{{ lastRecord }} of {{ totalRecords }}
+    </div>
+    <div class="k-pagination__controls">
+      <label>
+        Page size
+        <select [value]="pageSize" [disabled]="menuState === 'loading'" (change)="updatePageSize($event)">
+          <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+        </select>
+      </label>
+      <button type="button" class="k-page-btn" [disabled]="menuState === 'loading' || pageNumber <= 1" (click)="goToPage(pageNumber - 1)">Previous</button>
+      <span>Page {{ pageNumber }} of {{ totalPages }}</span>
+      <button type="button" class="k-page-btn" [disabled]="menuState === 'loading' || pageNumber >= totalPages" (click)="goToPage(pageNumber + 1)">Next</button>
+    </div>
+  </div>
+</section>

@@ -21,6 +21,6 @@ export const routes: Routes = [
   {
     path: ':slug',
     loadComponent: () =>
-      import('./pages/user-home/user-home-page').then((m) => m.UserHomePage),
+      import('./client-app/client-app.component').then((m) => m.ClientAppComponent),
   },
 ];

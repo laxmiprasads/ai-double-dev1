@@ -1,0 +1,214 @@
+.full-page {
+  --cream: #fdf9f3;
+  --cream-2: #f7f1e7;
+  --cream-3: #ede4d5;
+  --ink: #1a1209;
+  --ink-2: #231408;
+  --ink-3: #4a3820;
+  --muted: #8a7560;
+  --border: #ddd0bc;
+  --border-2: #ccc0aa;
+  --saffron: #d4820a;
+  --saffron-2: #f5aa1a;
+  --spice: #8b1a1a;
+  --green: #2d6a3f;
+  --blue: #1a4a8a;
+  width: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+
+.k-main,
+.k-footer,
+.k-dark-strip__inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.k-main,
+.k-dark-strip__inner,
+.k-footer {
+  padding: 0 24px;
+}
+
+.k-main {
+  padding-top: 36px;
+  padding-bottom: 80px;
+}
+
+.k-tabbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 86px;
+  z-index: 25;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 0 18px;
+  background: rgba(253, 249, 243, 0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.k-tabbar__btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+.k-tabbar__btn.is-active {
+  color: var(--ink);
+  background: var(--cream-2);
+}
+
+.k-panel {
+  display: none;
+  padding-top: 34px;
+}
+
+.k-panel.k-panel--active {
+  display: block;
+}
+
+.k-dark-strip {
+  padding: 72px 0;
+  background: var(--ink-2);
+  color: #fff;
+}
+
+.k-dark-strip__eyebrow {
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.k-dark-strip h2 {
+  color: #ede4d5;
+  margin: 0 0 10px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.k-dark-strip p {
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.k-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  background: var(--ink-2);
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.k-footer strong,
+.k-footer a {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.k-footer div {
+  display: grid;
+  gap: 6px;
+}
+
+.k-footer span {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.k-footer nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.k-footer a {
+  text-decoration: none;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 768px) {
+  .k-main,
+  .k-dark-strip__inner,
+  .k-footer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .k-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.k-center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.k-status-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(26, 18, 9, 0.08);
+  padding: 48px 32px;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+}
+
+.k-status-card h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.k-status-card p {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.k-spinner {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 24px;
+  border: 4px solid var(--cream-3);
+  border-top-color: var(--saffron);
+  border-radius: 50%;
+  animation: k-spin 1s linear infinite;
+}
+
+@keyframes k-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.k-status-card--error .k-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(139, 26, 26, 0.08);
+  color: var(--spice);
+  margin-bottom: 24px;
+}

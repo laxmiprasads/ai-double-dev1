@@ -1,0 +1,34 @@
+<section>
+  <div class="k-section-head">
+    <div class="k-section-head__eyebrow">07 / MCP Endpoints</div>
+    <h2 class="k-section-head__title">AI Double <em>API Reference</em></h2>
+    <p class="k-section-head__sub">These endpoint cards mirror the proposed MCP story from the original HTML.</p>
+  </div>
+
+  <div class="k-mcp-grid">
+    <article class="k-mcp-card" *ngFor="let endpoint of endpoints">
+      <div class="k-mcp-card__row">
+        <span class="k-mcp-card__method" [class.is-post]="endpoint.method === 'POST'">{{ endpoint.method }}</span>
+        <code>{{ baseUrl }}{{ endpoint.endpoint }}</code>
+      </div>
+      <h3>{{ endpoint.name }}</h3>
+      <p>{{ endpoint.description }}</p>
+
+      <div class="k-mcp-param" *ngFor="let param of endpoint.params">
+        <span>{{ param.name }}</span>
+        <small>{{ param.type }}</small>
+        <p>{{ param.description }}</p>
+        <strong *ngIf="param.required">required</strong>
+      </div>
+
+      <div class="k-mcp-card__note">{{ endpoint.note }}</div>
+    </article>
+  </div>
+
+  <div class="k-proposed-box">
+    <strong>Proposed MCP Base URL</strong>
+    <p>{{ baseUrl }}/</p>
+    <p>Manifest: {{ baseUrl }}/manifest.json</p>
+    <p>GEO Score today: 22/100 -> Target: 78+ after activation</p>
+  </div>
+</section>

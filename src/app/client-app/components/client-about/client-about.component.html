@@ -1,0 +1,92 @@
+<section class="k-about">
+  <div class="k-section-head">
+    <div class="k-section-head__eyebrow">04 / About</div>
+    <h2 class="k-section-head__title">Our <em>Story</em></h2>
+  </div>
+
+  <div class="k-about__grid">
+    <div>
+      <h3 class="k-about__title">{{ business.name }}</h3>
+      <p class="k-about__copy">{{ business.description }}</p>
+      <p class="k-about__copy">{{ business.extendedDescription }}</p>
+
+      <div class="k-tag-cloud">
+        <span class="k-cloud-tag" *ngFor="let tag of business.tags">
+          <span class="k-cloud-tag__dot" aria-hidden="true"></span>
+          <span class="k-cloud-tag__label">{{ tag }}</span>
+        </span>
+      </div>
+
+      <div class="k-presence">
+        <div class="k-presence__title">AI Platform Presence (Current GEO Score: {{ business.geoScore }}/100)</div>
+        <div class="k-presence__grid">
+          <div class="k-presence__item" *ngFor="let score of business.platformScores">
+            <span class="k-presence__dot" [style.background]="score.color"></span>
+            <span>{{ score.platform }}</span>
+            <strong>{{ score.value }}/100</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="k-opportunity">
+        <div class="k-opportunity__title">AI Double Opportunity - Top Gaps to Fix</div>
+        <div class="k-opportunity__row" *ngFor="let gap of business.discoveryGaps">
+          <span>{{ gap }}</span>
+          <strong>fixable</strong>
+        </div>
+      </div>
+    </div>
+
+    <aside class="k-info-stack">
+      <div class="k-info-card">
+        <h4>Contact</h4>
+        <ul>
+          <li>{{ business.address }}</li>
+          <li>{{ business.phone }}</li>
+          <li>{{ business.email }}</li>
+          <li>{{ business.website }}</li>
+          <li>Price range: {{ business.priceRange }}</li>
+        </ul>
+      </div>
+
+      <div class="k-info-card">
+        <h4>Opening Hours</h4>
+        <div class="k-hours-row" *ngFor="let hour of business.hours" [class.is-today]="hour.day === todayName">
+          <span>{{ hour.day }}</span>
+          <strong>{{ hour.open }} - {{ hour.close }}</strong>
+        </div>
+      </div>
+
+      <div class="k-info-card">
+        <h4>Order Online</h4>
+        <div class="k-platform-card">
+          <span>DoorDash</span>
+          <small>15-30% commission</small>
+        </div>
+        <div class="k-platform-card">
+          <span>Uber Eats</span>
+          <small>Aggregator ordering</small>
+        </div>
+        <div class="k-platform-card">
+          <span>orders.co</span>
+          <small>Direct ordering route</small>
+        </div>
+      </div>
+
+      <div class="k-happy-hour">
+        <h4>Happy Hour Specials</h4>
+        <p>Onion Pakora, Ragada Pattice, and rotating snack offers.</p>
+        <strong>4:00 PM - 7:00 PM Daily</strong>
+      </div>
+
+      <div class="k-info-card">
+        <h4>Location</h4>
+        <div class="k-map-box">
+          <strong>14856 Metcalf Ave</strong>
+          <span>Overland Park, KS 66223</span>
+        </div>
+        <p class="k-map-note">Parking, patio seating, delivery, pickup, dine-in, and catering are all highlighted in the original experience.</p>
+      </div>
+    </aside>
+  </div>
+</section>
