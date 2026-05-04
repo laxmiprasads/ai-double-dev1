@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, PendingTasks, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientAboutComponent } from './components/client-about/client-about.component';
 import { ClientCouponsComponent } from './components/client-coupons/client-coupons.component';
@@ -84,6 +84,9 @@ export class ClientAppComponent implements OnInit {
   currentjobinstanceid: string = '';
   currentBusinessEmail: string = '';
   @ViewChild('contentTop') contentTop?: ElementRef<HTMLElement>;
+  private readonly pendingTasks = inject(PendingTasks);
+  private readonly document = inject(DOCUMENT);
+  private readonly jsonLdScriptId = 'aidouble-jsonld';
 
   constructor(
     private route: ActivatedRoute,
@@ -95,7 +98,7 @@ export class ClientAppComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.dataset = 'Business';
       this.businessName = params.get('slug') ?? '';
-      void this.initializeBusiness();
+      this.pendingTasks.run(() => this.initializeBusiness());
     });
   }
 
@@ -345,6 +348,7 @@ export class ClientAppComponent implements OnInit {
         this.loadMenu(),
         this.loadCoupons(),
       ]);
+      this.injectJsonLd();
     } catch (error) {
       this.businessExists = false;
       this.businessStatusMessage = this.clientAppApiService.getErrorMessage(
@@ -381,6 +385,64 @@ export class ClientAppComponent implements OnInit {
     this.menuTotalRecords = 0;
     this.couponTotalRecords = 0;
     this.serviceTotalRecords = 0;
+  }
+
+  private injectJsonLd(): void {
+    const data = this.matchedInstance?.data ?? {};
+    const businessName: string = data['Business Name'] || data['Name'] || this.businessName;
+    const address: string = data['Address'] || data['Business Address'] || '';
+    const phone: string = data['Phone'] || data['Business Phone'] || '';
+    const email: string = data['Work Email'] || data['Business Email'] || '';
+    const website: string = data['Website'] || data['Website Route Url'] || '';
+
+    const menuItems = this.menuItems.map((item) => {
+      const d = item?.data ?? {};
+      return {
+        '@type': 'MenuItem',
+        name: d['Product Name'] || d['Name'] || '',
+        description: d['Description'] || d['Product Description'] || '',
+        offers: {
+          '@type': 'Offer',
+          price: d['Price'] ?? '',
+          priceCurrency: d['Currency'] || 'USD',
+        },
+      };
+    });
+
+    const services = this.services.map((service: any) => ({
+      '@type': 'Service',
+      name: service?.data?.['Service Name'] || service?.data?.['Name'] || '',
+      description: service?.data?.['Description'] || '',
+    }));
+
+    const jsonLd: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': 'Restaurant',
+      name: businessName,
+      url: typeof window !== 'undefined' ? window.location.href : `https://aidouble.ai/${this.businessName}`,
+      address: address ? { '@type': 'PostalAddress', streetAddress: address } : undefined,
+      telephone: phone || undefined,
+      email: email || undefined,
+      sameAs: website ? [website] : undefined,
+      hasMenu: menuItems.length
+        ? {
+            '@type': 'Menu',
+            hasMenuSection: { '@type': 'MenuSection', name: 'Menu', hasMenuItem: menuItems },
+          }
+        : undefined,
+      makesOffer: services.length ? services : undefined,
+    };
+
+    Object.keys(jsonLd).forEach((key) => jsonLd[key] === undefined && delete jsonLd[key]);
+
+    const existing = this.document.getElementById(this.jsonLdScriptId);
+    existing?.remove();
+
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = this.jsonLdScriptId;
+    script.textContent = JSON.stringify(jsonLd);
+    this.document.head.appendChild(script);
   }
 
   private scrollToSectionContent(): void {

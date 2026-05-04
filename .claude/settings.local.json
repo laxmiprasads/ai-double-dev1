@@ -4,7 +4,12 @@
       "Bash(Get-ChildItem -Path \"D:\\\\Gosure2\\\\cokube-angular\\\\src\\\\app\\\\client-app\" -Recurse -Directory)",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(Get-ChildItem *)",
-      "Bash(npx ng *)"
+      "Bash(npx ng *)",
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(NODE_OPTIONS=\"--enable-source-maps\" npm run build)",
+      "Bash(grep -oE '<script[^>]*application/ld\\\\+json[^>]*>[^<]{0,300}' dist/ai-double/browser/kushi-restaurant/index.html)"
     ]
   }
 }
