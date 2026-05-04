@@ -8,9 +8,8 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
-// TODO: Replace with the OAuth Web Client ID from
-// https://console.cloud.google.com/apis/credentials
-const GOOGLE_CLIENT_ID = '219118808458-eg2ofqri0e0adkvpj672ul6botrgt3om.apps.googleusercontent.com';
+// Injected at build time from the repo's .env file.
+declare const GOOGLE_CLIENT_ID: string;
 
 interface GooglePayload {
   email: string;
@@ -67,6 +66,11 @@ export class LoginPage implements AfterViewInit {
   }
 
   private initGoogle(): void {
+    if (!GOOGLE_CLIENT_ID) {
+      this.errorMessage = 'Google sign-in is not configured.';
+      return;
+    }
+
     google.accounts.id.initialize({
       client_id: GOOGLE_CLIENT_ID,
       callback: (response: { credential: string }) =>
