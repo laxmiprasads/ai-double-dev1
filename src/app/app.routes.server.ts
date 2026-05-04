@@ -17,7 +17,11 @@ export const serverRoutes: ServerRoute[] = [
     path: ':slug',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      return [{ slug: 'kushi-restaurant' }];
+      return [
+        { slug: 'kushi-restaurant' },
+        { slug: 'styleco-barbershop' },
+        { slug: 'everybody-pt' },
+      ];
     },
   },
 ];
