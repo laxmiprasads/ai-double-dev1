@@ -93,7 +93,7 @@ export class ClientAppComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.dataset = 'business';
+      this.dataset = 'Business';
       this.businessName = params.get('slug') ?? '';
       void this.initializeBusiness();
     });
